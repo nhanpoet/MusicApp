@@ -4,7 +4,7 @@ import { playlistData } from "../constants/index";
 import { Image } from "react-native";
 import { ScrollView } from "react-native";
 
-const WithForYou = ({ activeCategory }) => {
+const WithForYou = ({ activeCategory, navigation }) => {
   return (
     <View className="mt-3 ml-4">
       <Text className="font-semibold text-2xl tracking-wider text-white">
@@ -21,12 +21,14 @@ const WithForYou = ({ activeCategory }) => {
             .map((data, index) => {
               return (
                 <View key={index}>
-                  <TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("Playlist", { ...data })}
+                  >
                     <Image
                       source={data.img}
                       className="w-40 h-40 rounded-3xl"
                     />
-                    <Text className=" text-white text-sm mt-1 font-semibold">
+                    <Text className=" text-white text-sm mt-1 font-semibold w-36">
                       Playlist. {data.name}
                     </Text>
                   </TouchableOpacity>

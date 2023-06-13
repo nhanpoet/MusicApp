@@ -1,4 +1,11 @@
-import { View, Text, SafeAreaView, StatusBar } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  StatusBar,
+  Touchable,
+  TouchableOpacity,
+} from "react-native";
 import React, { useState } from "react";
 import { Image } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
@@ -7,17 +14,19 @@ import { ScrollView } from "react-native";
 import WithForYou from "../components/WithForYou";
 import Trending from "../components/Trending";
 import { categoryData } from "../constants";
+import { useNavigation } from "@react-navigation/native";
 
 const HomeScreen = () => {
   const [activeCategory, setActiveCategory] = useState(categoryData[0].name);
+  const navigation = useNavigation();
 
   return (
     <SafeAreaView className="flex-1">
-      <StatusBar barStyle={"light-content"} />
+      <StatusBar barStyle={"dark-content"} />
       <Image
         blurRadius={8}
         source={require("../../assets/images/z4407164788175_31635c2aab77721f83e519604c408b47.jpg")}
-        className="absolute w-full h-full"
+        className="absolute w-full h-screen"
       />
       <View className="flex-row items-center justify-between mt-2 mx-4">
         <Text className="lg:text-sm font-semibold text-xl tracking-wider text-white">
@@ -34,7 +43,7 @@ const HomeScreen = () => {
         </View>
       </View>
 
-      <View className="bg-[#1DDA63] w-full h-[1px] mt-3"></View>
+      <View className="bg-[#1DDA63] w-full h-[0.5px] mt-3"></View>
       <ScrollView>
         <View>
           <Category
@@ -43,9 +52,9 @@ const HomeScreen = () => {
           />
         </View>
         <View>
-          <WithForYou activeCategory={activeCategory} />
+          <WithForYou activeCategory={activeCategory} navigation={navigation} />
         </View>
-        <View className="bg-[#1DDA63] w-full h-[1px] mt-3"></View>
+        <View className="bg-[#1DDA63] w-full h-[0.5px] mt-3"></View>
         <View>
           <Trending activeCategory={activeCategory} />
         </View>
